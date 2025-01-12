@@ -14,9 +14,22 @@ void dbg_out(){cerr << endl;}
  
 void solve()
 {
- 
-    
-
+    int n; cin>>n;
+    vector<int> v(n);
+    for(auto &x: v) cin>>x;
+    unordered_set<int> st;
+    int maxsize=0;
+    for(int i=0;i<n;i++){
+        if(st.find(v[i])==st.end()){    
+            st.insert(v[i]);
+        }
+        else{
+            st.clear();
+            st.insert(v[i]);
+        }
+        maxsize=max(maxsize,(int)st.size());
+    }
+    cout<<maxsize<<endl;
  
 }
  

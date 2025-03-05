@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std ;
+#define int int64_t
  
  
  
@@ -11,27 +12,23 @@ void dbg_out(){cerr << endl;}
  
  
  
-pair<int64_t,int64_t> find(int64_t l,int64_t r,int64_t g){
-    int64_t  L = l + (l % g == 0 ? 0 : g - (l % g));
-    int64_t  R = r - r % g;
-    for(int64_t i = 0; i <= (R - L) / g; i++)
-        for(int64_t j = 0; j <= i; j++)
-            if(__gcd(L + j * g, R - (i - j) * g) == g)
-            {
-               return{L + j * g,R - (i - j) * g};
-            }
-    return{-1,-1};
-}
-
- 
 void solve()
 {
  
-    int64_t  l, r, g;
-    cin>>l>>r>>g;
-    cout<<find(l,r,g).first<<" "<<find(l,r,g).second<<endl;
+    int n; cin>>n;
+    vector<int> v(n);
+    for(auto &e:v) cin>>e;
+    // sort(v.begin(),v.end());
+    for(int i=0;i<n-1;i++){
+        if(v[i+1]<2*v[i] && 2*v[i+1]>v[i]){
+            cout<<"YES"<<endl;
+            return;
+        }
+    }
+    cout<<"NO"<<endl;
  
 }
+ 
  
  
 signed main()
@@ -40,7 +37,7 @@ signed main()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
  
-    int64_t tc=1;
+    int tc=1;
     cin>>tc;
  
     while(tc--)
